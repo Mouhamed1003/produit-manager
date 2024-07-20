@@ -3,7 +3,6 @@ import { Checkbox } from "./Components/Form/Checkbox.jsx";
 import { ProductCategoryRow } from "./Components/Produits/ProductCategoryRow.jsx";
 import { ProductRow } from "./Components/Produits/ProductRow.jsx";
 import { useState } from "react";
-import PropTypes from 'prop-types'; // Importez PropTypes depuis React
 
 
 const PRODUCTS = [
@@ -32,6 +31,7 @@ function App () {
   })
 
   return <div className="container my-3">
+    <h1>Au Marché Hebdomadaire</h1>
   <SearchBar 
     search={search}
     onSearchChange={setSearch}
@@ -53,7 +53,7 @@ function SearchBar ({showStockedOnly, onStockedOnlyChange, search, onSearchChang
         onChange = {onSearchChange} 
         placeholder = "Rechercher..." 
       />
-      {/* <input type="range" className="form-range " min={0} max={10} /> */}
+      <input type="week" className="form-range mt-4 bg-light" min={0} max={10} />
       <br/><Checkbox 
         id="stocked" 
         checked={showStockedOnly} 
@@ -63,14 +63,6 @@ function SearchBar ({showStockedOnly, onStockedOnlyChange, search, onSearchChang
   
     </div>
 }
-// Définissez les types des props attendues par SearchBar
-SearchBar.propTypes = {
-  showStockedOnly: PropTypes.bool.isRequired, // showStockedOnly doit être un booléen et est requis
-  onStockedOnlyChange: PropTypes.func.isRequired, // onStockedOnlyChange doit être une fonction et est requise
-  search: PropTypes.string.isRequired, // search doit être une chaîne de caractères et est requise
-  onSearchChange: PropTypes.func.isRequired, // onSearchChange doit être une fonction et est requise
-};
-
 
 function ProductTable ({products}) {
   const tableStyle = {
@@ -102,13 +94,6 @@ function ProductTable ({products}) {
         {rows}
     </tbody>
   </table>
-}
-
-
-
-// Définissez le type de la prop products attendue par ProductTable
-ProductTable.propTypes = {
-  products: PropTypes.array.isRequired, // products doit être un tableau et est requis
 }
 
 export default App
